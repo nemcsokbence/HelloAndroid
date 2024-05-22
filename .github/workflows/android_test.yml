@@ -27,15 +27,8 @@ jobs:
     - name: Grant execute permission for Gradle wrapper
       run: chmod +x ./gradlew
 
-    - name: Cache Gradle dependencies
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    - name: Verify Gradle wrapper
+      run: ./gradlew --version
 
     - name: Run tests
       run: ./gradlew testDebugUnitTest
