@@ -27,6 +27,12 @@ jobs:
     - name: Grant execute permission for Gradle wrapper
       run: chmod +x ./gradlew
 
+    - name: List directory contents
+      run: ls -al
+
+    - name: List Gradle wrapper directory contents
+      run: ls -al gradle/wrapper
+
     - name: Verify Gradle wrapper
       run: ./gradlew --version
 
