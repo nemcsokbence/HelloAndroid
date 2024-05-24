@@ -4,19 +4,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  make_directory:
-    name: Make directory
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Make build directory
-        run: mkdir -p directiry
     
   build:
-    needs: make_directory
-    name: Test
+    name: Build and deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -39,11 +29,11 @@ jobs:
       run: chmod +x ./gradlew
 
 
-    - name: Run tests
-      run: ./gradlew build
+    - name: Build APK
+      run: ./gradlew assembleRelease
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with: 
-        name: app-files
-        path: directory
+    - name: Upload APK as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: app-release-apk
+        path: app/build/outputs/apk/release/app-release.apk
