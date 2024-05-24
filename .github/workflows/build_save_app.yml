@@ -1,4 +1,4 @@
-name: Android Build
+name: Build and save android app
 
 on:
   workflow_dispatch:
