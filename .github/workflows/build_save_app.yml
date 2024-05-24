@@ -4,7 +4,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  make_directory:
+    name: Make directory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Make build directory
+        run: mkdir -p directiry
+    
+  build:
+    needs: make_directory
     name: Test
     runs-on: ubuntu-latest
 
